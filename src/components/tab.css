@@ -1,4 +1,4 @@
-.Tab {
+.tab {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -7,7 +7,7 @@
   width: 100%;
 }
 
-.Tab-Icon {
+.tab-icon {
   display: block;
   background-color: slateblue;
   height: 8em;
@@ -16,7 +16,7 @@
   flex-shrink: 0;
 }
 
-.Tab-Description {
+.tab-description {
   display: block;
   margin: 0.5em 4em 2em 4em;
   padding: 0 0 2.5em 0;
@@ -25,13 +25,13 @@
   border-bottom: solid 1px darkgray;
 }
 
-.Tab-Description .Title {
+.tab-description .title {
   font-size: 32px;
   margin: 0 0 1em 0;
   padding: 0;
 }
 
-.Tab-Description .Description {
+.tab-description .description {
   font-size: 14px;
   margin: 0 0 8px 0;
   padding: 0;
