@@ -5,7 +5,7 @@ body {
   justify-content: center;
 }
 
-.quicksort {
+.sorting {
   display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -14,11 +14,11 @@ body {
   width: 100%;
 }
 
-.quicksort button {
+.sorting button {
   margin: 8px;
 }
 
-.quicksort .bar {
+.sorting .bar {
   display: flex;
   width: 7px;
   flex-grow: 0;

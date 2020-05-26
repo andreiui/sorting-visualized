@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Sorting.css";
 import { selectionSort, mergeSort } from "./Algorithms.js";
 
-class Quicksort extends Component {
+class Sorting extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,7 +17,7 @@ class Quicksort extends Component {
   sortAnimation = (array, l, u, sort, ms) => {
     let animations = [];
     let unsorted = [...array];
-    const bars = document.getElementsByClassName("quicksort bar");
+    const bars = document.getElementsByClassName("sorting bar");
 
     animations = sort(array, l, u);
 
@@ -87,12 +87,12 @@ class Quicksort extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="quicksort">
+        <div className="sorting">
           {this.state.list.map((number) => (
             <Bar key={number} display={number} />
           ))}
         </div>
-        <div className="quicksort button">
+        <div className="sorting button">
           <button
             className="shuffle"
             onClick={() =>
@@ -178,8 +178,8 @@ class Bar extends Component {
   };
 
   render() {
-    return <div className="quicksort bar" style={this.state} />;
+    return <div className="sorting bar" style={this.state} />;
   }
 }
 
-export default Quicksort;
+export default Sorting;
