@@ -1,6 +1,7 @@
 main,
 body {
   display: flex;
+  background-color: white;
   justify-content: center;
 }
 
@@ -19,11 +20,11 @@ body {
 
 .quicksort .bar {
   display: flex;
-  width: 3px;
+  width: 7px;
   flex-grow: 0;
   flex-shrink: 1;
-  margin: 2px;
+  margin: 2.5px;
   justify-content: center;
   align-items: center;
-  background-color: lightblue;
+  border-radius: 3.5px;
 }
