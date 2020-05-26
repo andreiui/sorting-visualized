@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Quicksort from "./sorting/Quicksort";
+import Quicksort from "./sorting/Sorting";
 
 function App() {
   return <Quicksort />;

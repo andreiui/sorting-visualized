@@ -4,10 +4,6 @@ body {
   justify-content: center;
 }
 
-.shuffle {
-  margin: 4px;
-}
-
 .quicksort {
   display: inline-flex;
   flex-direction: row;
@@ -15,21 +11,19 @@ body {
   justify-content: center;
   align-items: flex-end;
   width: 100%;
-  overflow: scroll;
 }
 
-.sort {
-  margin: 4px;
+.quicksort button {
+  margin: 8px;
 }
 
-.quicksort .card {
+.quicksort .bar {
   display: flex;
-  width: 10px;
+  width: 3px;
   flex-grow: 0;
   flex-shrink: 1;
-  margin: 4px;
+  margin: 2px;
   justify-content: center;
   align-items: center;
   background-color: lightblue;
-  border-radius: 5px;
 }
