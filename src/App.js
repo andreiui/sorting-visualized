@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
-import Quicksort from "./sorting/Sorting";
+import Sorting from "./sorting/Sorting";
 
 function App() {
-  return <Quicksort />;
+  return <Sorting />;
 }
 
 export default App;

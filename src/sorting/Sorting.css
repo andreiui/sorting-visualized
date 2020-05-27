@@ -1,9 +1,18 @@
 main,
 body {
-  display: flex;
+  display: block;
   background-color: white;
-  justify-content: center;
-  margin: 20px;
+  padding: 20px 30px 20px 30px;
+}
+
+.title {
+  margin: 0 0 20px 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: auto;
 }
 
 .sorting {
@@ -12,20 +21,54 @@ body {
   flex-wrap: nowrap;
   justify-content: center;
   align-items: flex-end;
-  width: 100%;
+  margin-bottom: 30px;
 }
 
-.sorting button {
-  margin: 16px;
+.title .logo {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 0;
+}
+
+.text {
+  margin: 0;
+}
+
+.buttons {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons .button {
+  margin: 0 10px 0 10px;
 }
 
 .sorting .bar {
   display: flex;
-  width: 7px;
+  width: 10px;
   flex-grow: 0;
   flex-shrink: 1;
-  margin: 2.5px;
+  margin: 5px;
   justify-content: center;
   align-items: center;
-  border-radius: 3.5px;
+  border-radius: 5px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .sorting .bar {
+    display: flex;
+    width: 4px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin: 1.5px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7px;
+  }
 }

@@ -2,6 +2,17 @@ import React, { Component } from "react";
 import "./Sorting.css";
 import { shuffleArray, selectionSort, mergeSort } from "./Algorithms.js";
 
+class Main extends Component {
+  render() {
+    return (
+      <React.Fragment>
+        <Title />
+        <Sorting />
+      </React.Fragment>
+    );
+  }
+}
+
 class Sorting extends Component {
   constructor(props) {
     super(props);
@@ -37,7 +48,7 @@ class Sorting extends Component {
   ];
 
   componentDidMount() {
-    this.setState({ list: this.generateArray(0, 24) });
+    this.setState({ list: this.generateArray(0, 52) });
   }
 
   sortAnimation = (array, l, u, sort, method, ms) => {
@@ -124,32 +135,17 @@ class Sorting extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <div className="sorting">
-          <h1>
-            <i>24</i>
-          </h1>
-          <h2>
-            <i>/</i>
-          </h2>
-          <h3>
-            <i>7</i>
-          </h3>
-          &nbsp;
-          <p>
-            <b>sorting</b>
-          </p>
-        </div>
+      <div className="container">
         <div className="sorting">
           {this.state.list.map((number) => (
             <Bar key={number} display={number} />
           ))}
         </div>
-        <div className="sorting button">
+        <div className="buttons">
           {this.getShuffle()}
           {this.getButtons()}
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 
@@ -165,6 +161,7 @@ class Sorting extends Component {
     if (this.state.sorted) {
       return (
         <button
+          className="button"
           key="Shuffle"
           onClick={() =>
             this.setState({
@@ -191,6 +188,7 @@ class Sorting extends Component {
         .filter((button) => button.class === "sorting")
         .map((button) => (
           <button
+            className="button"
             key={button.title}
             onClick={() =>
               this.setState({
@@ -211,17 +209,38 @@ class Sorting extends Component {
     } else {
       return (
         <React.Fragment>
-          <h2>{this.state.method}</h2>
+          <h2 className="text">{this.state.method}</h2>
         </React.Fragment>
       );
     }
   };
 }
 
+const Title = () => {
+  return (
+    <div className="title">
+      <div className="title logo">
+        <h1 className="text">
+          <i>52</i>&nbsp;<small>lines</small>&nbsp;
+        </h1>
+        <h2 className="text">
+          <i>/</i>&nbsp;
+        </h2>
+        <h3 className="text">
+          <i>12</i>&nbsp;<small>algorithms</small>
+        </h3>
+      </div>
+      <div className="text">
+        <small>made by andreipascu.</small>
+      </div>
+    </div>
+  );
+};
+
 class Bar extends Component {
   state = {
     backgroundColor: "lightblue",
-    height: this.props.display * 8 + 7 + "px",
+    height: this.props.display * 10 + 10 + "px",
   };
 
   render() {
@@ -229,4 +248,4 @@ class Bar extends Component {
   }
 }
 
-export default Sorting;
+export default Main;
