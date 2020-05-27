@@ -1,23 +1,49 @@
 import React, { Component } from "react";
 import "./Sorting.css";
-import { selectionSort, mergeSort } from "./Algorithms.js";
+import { shuffleArray, selectionSort, mergeSort } from "./Algorithms.js";
 
 class Sorting extends Component {
   constructor(props) {
     super(props);
     this.state = {
       list: [],
+      done: true,
     };
   }
+  buttons = [
+    {
+      class: "shuffle",
+      title: "Shuffle",
+      func: shuffleArray,
+      speed: 35,
+    },
+    {
+      class: "sorting",
+      title: "Selection Sort",
+      func: selectionSort,
+      speed: 40,
+    },
+    {
+      class: "sorting",
+      title: "Merge Sort",
+      func: mergeSort,
+      speed: 40,
+    },
+  ];
 
   componentDidMount() {
     this.setState({ list: this.generateArray(0, 24) });
   }
 
   sortAnimation = (array, l, u, sort, ms) => {
+    if (!this.state.done) {
+      return array;
+    }
+
     let animations = [];
     let unsorted = [...array];
     const bars = document.getElementsByClassName("sorting bar");
+    this.setState({ done: false });
 
     animations = sort(array, l, u);
 
@@ -74,6 +100,10 @@ class Sorting extends Component {
       }
     }, animations.length * ms);
 
+    setTimeout(() => {
+      this.setState({ done: true });
+    }, (animations.length + 1) * ms);
+
     return unsorted;
   };
 
@@ -93,74 +123,28 @@ class Sorting extends Component {
           ))}
         </div>
         <div className="sorting button">
-          <button
-            className="shuffle"
-            onClick={() =>
-              this.setState({
-                list: this.sortAnimation(
-                  this.state.list,
-                  0,
-                  this.state.list.length,
-                  this.shuffleArray,
-                  30
-                ),
-              })
-            }
-          >
-            Shuffle
-          </button>
-          <button
-            className="sort"
-            onClick={() =>
-              this.setState({
-                list: this.sortAnimation(
-                  this.state.list,
-                  0,
-                  this.state.list.length,
-                  selectionSort,
-                  50
-                ),
-              })
-            }
-          >
-            Selection Sort
-          </button>
-          <button
-            className="sort"
-            onClick={() =>
-              this.setState({
-                list: this.sortAnimation(
-                  this.state.list,
-                  0,
-                  this.state.list.length,
-                  mergeSort,
-                  50
-                ),
-              })
-            }
-          >
-            Merge Sort
-          </button>
+          {this.buttons.map((button) => (
+            <button
+              key={button.title}
+              onClick={() =>
+                this.setState({
+                  list: this.sortAnimation(
+                    this.state.list,
+                    0,
+                    this.state.list.length,
+                    button.func,
+                    button.speed
+                  ),
+                })
+              }
+            >
+              {button.title}
+            </button>
+          ))}
         </div>
       </React.Fragment>
     );
   }
-
-  shuffleArray = (array, l, u) => {
-    var animations = [];
-    let j;
-
-    for (let i = array.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
-      const a = {};
-      a.comp = [i, j];
-      a.swap = [i, j];
-      array = this.swap(array, i, j);
-      animations.push(a);
-    }
-
-    return animations;
-  };
 
   generateArray = (start, end) => {
     let array = [];

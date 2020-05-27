@@ -3,6 +3,7 @@ body {
   display: flex;
   background-color: white;
   justify-content: center;
+  margin: 20px;
 }
 
 .sorting {
@@ -15,7 +16,7 @@ body {
 }
 
 .sorting button {
-  margin: 8px;
+  margin: 16px;
 }
 
 .sorting .bar {

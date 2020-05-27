@@ -1,3 +1,17 @@
+export const shuffleArray = (array, l, u) => {
+  var animations = [];
+  let j;
+  for (let i = u - 1; i > l; i--) {
+    j = Math.floor(Math.random() * (i + 1));
+    const a = {};
+    a.comp = [i, j];
+    a.swap = [i, j];
+    array = swap(array, i, j);
+    animations.push(a);
+  }
+  return animations;
+};
+
 export const selectionSort = (array, l, u) => {
   var animations = [];
   for (var i = l; i < u; i++) {
@@ -5,7 +19,7 @@ export const selectionSort = (array, l, u) => {
       const a = {};
       a.comp = [i, j];
       if (array[j] < array[i]) {
-        swap(array, i, j);
+        array = swap(array, i, j);
         a.swap = [i, j];
       }
       animations.push(a);
@@ -23,7 +37,7 @@ export const mergeSort = (array, l, u) => {
     const a = {};
     a.comp = [l, u - 1];
     if (array[u - 1] < array[l]) {
-      swap(array, l, u - 1);
+      array = swap(array, l, u - 1);
       a.swap = [l, u - 1];
     }
     animations.push(a);
@@ -80,9 +94,10 @@ function mergeIntoArray(array, l, u, mid) {
   return animations;
 }
 
-function swap(array, i, j) {
+export function swap(array, i, j) {
   var temp;
   temp = array[i];
   array[i] = array[j];
   array[j] = temp;
+  return array;
 }
