@@ -8,6 +8,8 @@ class Sorting extends Component {
     this.state = {
       list: [],
       done: true,
+      method: "",
+      sorted: true,
     };
   }
   buttons = [
@@ -16,18 +18,21 @@ class Sorting extends Component {
       title: "Shuffle",
       func: shuffleArray,
       speed: 35,
+      active: "Shuffling...",
     },
     {
       class: "sorting",
       title: "Selection Sort",
       func: selectionSort,
       speed: 40,
+      active: "Sorting...",
     },
     {
       class: "sorting",
       title: "Merge Sort",
       func: mergeSort,
       speed: 40,
+      active: "Sorting...",
     },
   ];
 
@@ -35,7 +40,7 @@ class Sorting extends Component {
     this.setState({ list: this.generateArray(0, 24) });
   }
 
-  sortAnimation = (array, l, u, sort, ms) => {
+  sortAnimation = (array, l, u, sort, method, ms) => {
     if (!this.state.done) {
       return array;
     }
@@ -43,7 +48,7 @@ class Sorting extends Component {
     let animations = [];
     let unsorted = [...array];
     const bars = document.getElementsByClassName("sorting bar");
-    this.setState({ done: false });
+    this.setState({ done: false, method: method, sorted: false });
 
     animations = sort(array, l, u);
 
@@ -101,7 +106,10 @@ class Sorting extends Component {
     }, animations.length * ms);
 
     setTimeout(() => {
-      this.setState({ done: true });
+      this.setState({ done: true, method: "" });
+      if (method === "Sorting...") {
+        this.setState({ sorted: true });
+      }
     }, (animations.length + 1) * ms);
 
     return unsorted;
@@ -118,29 +126,28 @@ class Sorting extends Component {
     return (
       <React.Fragment>
         <div className="sorting">
+          <h1>
+            <i>24</i>
+          </h1>
+          <h2>
+            <i>/</i>
+          </h2>
+          <h3>
+            <i>7</i>
+          </h3>
+          &nbsp;
+          <p>
+            <b>sorting</b>
+          </p>
+        </div>
+        <div className="sorting">
           {this.state.list.map((number) => (
             <Bar key={number} display={number} />
           ))}
         </div>
         <div className="sorting button">
-          {this.buttons.map((button) => (
-            <button
-              key={button.title}
-              onClick={() =>
-                this.setState({
-                  list: this.sortAnimation(
-                    this.state.list,
-                    0,
-                    this.state.list.length,
-                    button.func,
-                    button.speed
-                  ),
-                })
-              }
-            >
-              {button.title}
-            </button>
-          ))}
+          {this.getShuffle()}
+          {this.getButtons()}
         </div>
       </React.Fragment>
     );
@@ -152,6 +159,62 @@ class Sorting extends Component {
       array.push(i + start);
     }
     return array;
+  };
+
+  getShuffle = () => {
+    if (this.state.sorted) {
+      return (
+        <button
+          key="Shuffle"
+          onClick={() =>
+            this.setState({
+              list: this.sortAnimation(
+                this.state.list,
+                0,
+                this.state.list.length,
+                shuffleArray,
+                "Shuffling...",
+                35
+              ),
+            })
+          }
+        >
+          Shuffle
+        </button>
+      );
+    }
+  };
+
+  getButtons = () => {
+    if (this.state.done && !this.state.sorted) {
+      return this.buttons
+        .filter((button) => button.class === "sorting")
+        .map((button) => (
+          <button
+            key={button.title}
+            onClick={() =>
+              this.setState({
+                list: this.sortAnimation(
+                  this.state.list,
+                  0,
+                  this.state.list.length,
+                  button.func,
+                  button.active,
+                  button.speed
+                ),
+              })
+            }
+          >
+            {button.title}
+          </button>
+        ));
+    } else {
+      return (
+        <React.Fragment>
+          <h2>{this.state.method}</h2>
+        </React.Fragment>
+      );
+    }
   };
 }
 
