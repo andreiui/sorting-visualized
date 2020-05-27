@@ -94,6 +94,59 @@ function mergeIntoArray(array, l, u, mid) {
   return animations;
 }
 
+export const quickSort = (array, l, u) => {
+  var animations = [];
+  var pivot;
+
+  if (l === u || l + 1 === u) {
+    return animations;
+  }
+  if (l + 1 === u - 1) {
+    const a = {};
+    a.comp = [l, u - 1];
+    if (array[u - 1] < array[l]) {
+      array = swap(array, l, u - 1);
+      a.swap = [l, u - 1];
+    }
+    animations.push(a);
+    return animations;
+  }
+
+  pivot = quickSortPartition(array, l, u, animations);
+
+  animations = [
+    ...animations,
+    ...quickSort(array, l, pivot),
+    ...quickSort(array, pivot + 1, u),
+  ];
+
+  return animations;
+};
+
+function quickSortPartition(array, l, u, animations) {
+  var pivot = l;
+  var i = l + 1;
+  var j = u - 1;
+
+  while (pivot < j) {
+    const a = {};
+    a.comp = [pivot, i];
+    if (array[i] < array[pivot]) {
+      a.swap = [pivot, i];
+      array = swap(array, i, pivot);
+      i++;
+      pivot++;
+    } else {
+      a.swap = [i, j];
+      array = swap(array, i, j);
+      j--;
+    }
+    animations.push(a);
+  }
+
+  return pivot;
+}
+
 export function swap(array, i, j) {
   var temp;
   temp = array[i];

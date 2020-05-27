@@ -54,7 +54,7 @@ body {
   width: 10px;
   flex-grow: 0;
   flex-shrink: 1;
-  margin: 5px;
+  margin: 6px;
   justify-content: center;
   align-items: center;
   border-radius: 5px;
@@ -62,13 +62,22 @@ body {
 
 @media only screen and (max-width: 1000px) {
   .sorting .bar {
-    display: flex;
+    width: 7px;
+    margin: 4px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .sorting .bar {
     width: 4px;
     flex-grow: 1;
     flex-shrink: 1;
-    margin: 1.5px;
-    justify-content: center;
-    align-items: center;
+    margin: 1.25px;
     border-radius: 7px;
   }
 }

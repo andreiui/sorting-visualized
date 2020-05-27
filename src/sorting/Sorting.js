@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import "./Sorting.css";
-import { shuffleArray, selectionSort, mergeSort } from "./Algorithms.js";
+import {
+  shuffleArray,
+  selectionSort,
+  mergeSort,
+  quickSort,
+} from "./Algorithms.js";
 
 class Main extends Component {
   render() {
@@ -45,6 +50,13 @@ class Sorting extends Component {
       speed: 40,
       active: "Sorting...",
     },
+    {
+      class: "sorting",
+      title: "Quick Sort",
+      func: quickSort,
+      speed: 40,
+      active: "Sorting...",
+    },
   ];
 
   componentDidMount() {
@@ -62,6 +74,7 @@ class Sorting extends Component {
     this.setState({ done: false, method: method, sorted: false });
 
     animations = sort(array, l, u);
+    console.log(animations.filter((a) => a.comp !== undefined));
 
     for (var i = 0; i < animations.length; i++) {
       const { comp, swap, arr } = animations[i];
@@ -91,14 +104,27 @@ class Sorting extends Component {
       }, i * ms);
       setTimeout(() => {
         if (comp !== undefined) {
+          var t;
           bars[comp[0]].style.backgroundColor = "lightblue";
           bars[comp[1]].style.backgroundColor = "lightblue";
+          if (swap !== undefined) {
+            bars[swap[0]].style.backgroundColor = "lightblue";
+            if (arr === undefined) {
+              bars[swap[1]].style.backgroundColor = "lightblue";
+            } else {
+              for (
+                t = 0;
+                unsorted[t] !== arr[swap[1]] && t < unsorted.length;
+                t++
+              );
+              bars[t].style.backgroundColor = "lightblue";
+            }
+          }
         } else {
           bars[swap[0]].style.backgroundColor = "lightblue";
           if (arr === undefined) {
             bars[swap[1]].style.backgroundColor = "lightblue";
           } else {
-            var t;
             for (
               t = 0;
               unsorted[t] !== arr[swap[1]] && t < unsorted.length;
