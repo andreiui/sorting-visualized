@@ -3,8 +3,11 @@ import "./Sorting.css";
 import {
   shuffleArray,
   selectionSort,
+  bubbleSort,
+  insertionSort,
   mergeSort,
   quickSort,
+  heapSort,
 } from "./Algorithms.js";
 
 class Main extends Component {
@@ -33,13 +36,27 @@ class Sorting extends Component {
       class: "shuffle",
       title: "Shuffle",
       func: shuffleArray,
-      speed: 35,
+      speed: 40,
       active: "Shuffling...",
     },
     {
       class: "sorting",
       title: "Selection Sort",
       func: selectionSort,
+      speed: 40,
+      active: "Sorting...",
+    },
+    {
+      class: "sorting",
+      title: "Bubble Sort",
+      func: bubbleSort,
+      speed: 40,
+      active: "Sorting...",
+    },
+    {
+      class: "sorting",
+      title: "Insertion Sort",
+      func: insertionSort,
       speed: 40,
       active: "Sorting...",
     },
@@ -52,8 +69,15 @@ class Sorting extends Component {
     },
     {
       class: "sorting",
-      title: "Quick Sort",
+      title: "Quicksort",
       func: quickSort,
+      speed: 40,
+      active: "Sorting...",
+    },
+    {
+      class: "sorting",
+      title: "Heapsort",
+      func: heapSort,
       speed: 40,
       active: "Sorting...",
     },
@@ -74,7 +98,6 @@ class Sorting extends Component {
     this.setState({ done: false, method: method, sorted: false });
 
     animations = sort(array, l, u);
-    console.log(animations.filter((a) => a.comp !== undefined));
 
     for (var i = 0; i < animations.length; i++) {
       const { comp, swap, arr } = animations[i];

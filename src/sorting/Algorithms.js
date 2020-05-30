@@ -14,14 +14,55 @@ export const shuffleArray = (array, l, u) => {
 
 export const selectionSort = (array, l, u) => {
   var animations = [];
+  var minIndex;
   for (var i = l; i < u; i++) {
+    minIndex = i;
     for (var j = i + 1; j < u; j++) {
       const a = {};
-      a.comp = [i, j];
-      if (array[j] < array[i]) {
-        array = swap(array, i, j);
-        a.swap = [i, j];
+      a.comp = [j, minIndex];
+      if (array[j] < array[minIndex]) {
+        minIndex = j;
       }
+      animations.push(a);
+    }
+    const a = {};
+    array = swap(array, i, minIndex);
+    a.swap = [i, minIndex];
+    animations.push(a);
+  }
+  return animations;
+};
+
+export const bubbleSort = (array, l, u) => {
+  var animations = [];
+  for (var j = u - 1; j >= 1; j--) {
+    for (var i = l; i < j; i++) {
+      const a = {};
+      a.comp = [i, i + 1];
+      if (array[i] > array[i + 1]) {
+        array = swap(array, i, i + 1);
+        a.swap = [i, i + 1];
+      }
+      animations.push(a);
+    }
+  }
+  return animations;
+};
+
+export const insertionSort = (array, l, u) => {
+  var animations = [];
+  var j;
+  for (var i = l; i < u - 1; i++) {
+    for (j = i + 1; j > 0 && array[j - 1] > array[j]; j--) {
+      const a = {};
+      a.comp = [j - 1, j];
+      array = swap(array, j - 1, j);
+      a.swap = [j - 1, j];
+      animations.push(a);
+    }
+    if (j !== 0) {
+      const a = {};
+      a.comp = [j - 1, j];
       animations.push(a);
     }
   }
@@ -147,7 +188,9 @@ function quickSortPartition(array, l, u, animations) {
   return pivot;
 }
 
-export function swap(array, i, j) {
+export const heapSort = (array, l, u) => {};
+
+function swap(array, i, j) {
   var temp;
   temp = array[i];
   array[i] = array[j];

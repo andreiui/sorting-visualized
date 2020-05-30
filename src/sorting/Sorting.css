@@ -29,7 +29,7 @@ body {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
-  align-items: flex-end;
+  align-items: baseline;
   margin: 0;
 }
 
@@ -40,13 +40,13 @@ body {
 .buttons {
   display: inline-flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
 
 .buttons .button {
-  margin: 0 10px 0 10px;
+  margin: 8px;
 }
 
 .sorting .bar {
