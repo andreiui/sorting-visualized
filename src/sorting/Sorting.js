@@ -8,6 +8,7 @@ import {
   mergeSort,
   quickSort,
   heapSort,
+  cocktailSort,
 } from "./Algorithms.js";
 
 class Main extends Component {
@@ -36,55 +37,62 @@ class Sorting extends Component {
       class: "shuffle",
       title: "Shuffle",
       func: shuffleArray,
-      speed: 40,
+      speed: 6,
       active: "Shuffling...",
     },
     {
       class: "sorting",
       title: "Selection Sort",
       func: selectionSort,
-      speed: 40,
+      speed: 6,
       active: "Sorting...",
     },
     {
       class: "sorting",
       title: "Bubble Sort",
       func: bubbleSort,
-      speed: 40,
+      speed: 6,
       active: "Sorting...",
     },
     {
       class: "sorting",
       title: "Insertion Sort",
       func: insertionSort,
-      speed: 40,
+      speed: 6,
       active: "Sorting...",
     },
     {
       class: "sorting",
       title: "Merge Sort",
       func: mergeSort,
-      speed: 40,
+      speed: 12,
       active: "Sorting...",
     },
     {
       class: "sorting",
       title: "Quicksort",
       func: quickSort,
-      speed: 40,
+      speed: 12,
       active: "Sorting...",
     },
     {
       class: "sorting",
       title: "Heapsort",
       func: heapSort,
-      speed: 40,
+      speed: 6,
+      active: "Sorting...",
+    },
+    {
+      class: "sorting",
+      title: "Cocktail Sort",
+      func: cocktailSort,
+      speed: 4,
       active: "Sorting...",
     },
   ];
 
   componentDidMount() {
-    this.setState({ list: this.generateArray(0, 52) });
+    this.setState({ list: this.generateArray(0, 156) });
   }
 
   sortAnimation = (array, l, u, sort, method, ms) => {
@@ -220,7 +228,7 @@ class Sorting extends Component {
                 this.state.list.length,
                 shuffleArray,
                 "Shuffling...",
-                35
+                12
               ),
             })
           }
@@ -270,17 +278,20 @@ const Title = () => {
     <div className="title">
       <div className="title logo">
         <h1 className="text">
-          <i>52</i>&nbsp;<small>lines</small>&nbsp;
+          156&nbsp;<small>lines</small>&nbsp;
         </h1>
-        <h2 className="text">
-          <i>/</i>&nbsp;
-        </h2>
+        <h2 className="text">|&nbsp;</h2>
         <h3 className="text">
-          <i>12</i>&nbsp;<small>algorithms</small>
+          12&nbsp;<small>algorithms</small>
         </h3>
       </div>
       <div className="text">
-        <small>made by andreipascu.</small>
+        <small>
+          made by{" "}
+          <a className="a" href="https://github.com/andreiui?tab=projects">
+            Andrei Pascu
+          </a>
+        </small>
       </div>
     </div>
   );
@@ -289,7 +300,7 @@ const Title = () => {
 class Bar extends Component {
   state = {
     backgroundColor: "lightblue",
-    height: this.props.display * 10 + 10 + "px",
+    height: this.props.display * 3.6 + 4 + "px",
   };
 
   render() {
