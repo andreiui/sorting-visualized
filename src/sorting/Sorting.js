@@ -86,7 +86,7 @@ class Sorting extends Component {
       class: "sorting",
       title: "Cocktail Sort",
       func: cocktailSort,
-      speed: 4,
+      speed: 6,
       active: "Sorting...",
     },
   ];

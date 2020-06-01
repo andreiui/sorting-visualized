@@ -40,11 +40,11 @@ body {
 .text .a {
   text-decoration: none;
   color: black;
+  transition: 0.1s ease-in;
 }
 
 .text .a:hover {
-  text-decoration: underline;
-  color: blueviolet;
+  color: palevioletred;
 }
 
 .buttons {
@@ -91,9 +91,9 @@ body {
 
 @media only screen and (max-width: 800px) {
   .sorting .bar {
-    width: 2px;
+    width: 1px;
     flex-grow: 1;
-    flex-shrink: 1;
+    flex-shrink: 0;
     margin: 1px;
     border-radius: 1px;
   }
