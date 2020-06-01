@@ -1,0 +1,67 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: baseline;
+  margin: 0;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  padding: 10px 0 0 0;
+}
+
+.slider {
+  display: flex;
+  align-items: center;
+  margin: 0 0 20px 0;
+}
+
+.slider-input {
+  -webkit-appearance: none;
+  background: #cccccc;
+  width: 150px;
+  height: 2px;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.slider-input:hover {
+  opacity: 1;
+}
+
+.slider-input::-webkit-slider-thumb {
+  cursor: pointer;
+}
+
+.slider-input::-moz-range-thumb {
+  cursor: pointer;
+}
+
+.text {
+  margin: 0;
+}
+
+.text .a {
+  text-decoration: none;
+  color: black;
+  transition: 0.1s ease-in;
+}
+
+.text .a:hover {
+  color: palevioletred;
+}

@@ -11,17 +11,6 @@ import {
   cocktailSort,
 } from "./Algorithms.js";
 
-class Main extends Component {
-  render() {
-    return (
-      <React.Fragment>
-        <Title />
-        <Sorting />
-      </React.Fragment>
-    );
-  }
-}
-
 class Sorting extends Component {
   constructor(props) {
     super(props);
@@ -273,30 +262,6 @@ class Sorting extends Component {
   };
 }
 
-const Title = () => {
-  return (
-    <div className="title">
-      <div className="title logo">
-        <h1 className="text">
-          156&nbsp;<small>lines</small>&nbsp;
-        </h1>
-        <h2 className="text">|&nbsp;</h2>
-        <h3 className="text">
-          12&nbsp;<small>algorithms</small>
-        </h3>
-      </div>
-      <div className="text">
-        <small>
-          made by{" "}
-          <a className="a" href="https://github.com/andreiui?tab=projects">
-            Andrei Pascu
-          </a>
-        </small>
-      </div>
-    </div>
-  );
-};
-
 class Bar extends Component {
   state = {
     backgroundColor: "lightblue",
@@ -308,4 +273,4 @@ class Bar extends Component {
   }
 }
 
-export default Main;
+export default Sorting;

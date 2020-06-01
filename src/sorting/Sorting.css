@@ -52,11 +52,28 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
 }
 
 .buttons .button {
-  margin: 8px;
+  background: #fafafa;
+  font-weight: lighter;
+  width: 104px;
+  height: 32px;
+  margin: 0 8px 8px 8px;
+  border: 1px #dadada solid;
+  border-radius: 4px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.buttons .button:hover {
+  border: 1px #262626 solid;
+  box-shadow: 2px 2px 2px #eaeaea;
+}
+
+.buttons .button:active {
+  box-shadow: inset 1px 1px 1px #dfdfdf;
 }
 
 .sorting .bar {
