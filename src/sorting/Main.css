@@ -70,7 +70,8 @@
 }
 
 .text .a:hover {
-  color: palevioletred;
+  text-decoration: underline;
+  color: #0366d6;
 }
 
 @media only screen and (max-width: 750px) {
