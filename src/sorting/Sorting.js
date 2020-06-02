@@ -110,6 +110,7 @@ class Sorting extends Component {
 
     sizeInputSlider.disabled = true;
     speedInputSlider.disabled = true;
+    ms *= this.props.speed;
 
     animations = sort(array, l, u);
 
@@ -228,8 +229,7 @@ class Sorting extends Component {
                 this.state.list.length,
                 shuffleArray,
                 "Shuffling...",
-                12,
-                this.props
+                12
               ),
             })
           }
@@ -256,8 +256,7 @@ class Sorting extends Component {
                   this.state.list.length,
                   button.func,
                   button.active,
-                  button.speed,
-                  this.props
+                  button.speed
                 ),
               })
             }
@@ -268,7 +267,7 @@ class Sorting extends Component {
     } else {
       return (
         <React.Fragment>
-          <h2 className="text">{this.state.method}</h2>
+          <h2 className="status">{this.state.method}</h2>
         </React.Fragment>
       );
     }

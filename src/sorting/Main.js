@@ -7,7 +7,7 @@ class Main extends Component {
     super(props);
     this.state = {
       size: "156",
-      speed: "9",
+      speed: "8",
     };
     this.setSize = this.setSize.bind(this);
     this.setSpeed = this.setSpeed.bind(this);
@@ -32,9 +32,16 @@ class Main extends Component {
           speed={this.state.speed}
           setSpeed={this.setSpeed}
         />
-        <Sorting size={this.state.size} speed={this.state.speed} />
+        <Sorting
+          size={this.state.size}
+          speed={this.calculateSpeed(this.state.speed)}
+        />
       </React.Fragment>
     );
+  }
+
+  calculateSpeed(speed) {
+    return (1 / (Math.log2(speed) / 3)) ** 1.5;
   }
 }
 
@@ -79,8 +86,8 @@ class Settings extends Component {
           <input
             id="speed"
             type="range"
-            min="2"
-            max="12"
+            min="4"
+            max="14"
             step="2"
             defaultValue={this.props.speed}
             className="slider-input"
