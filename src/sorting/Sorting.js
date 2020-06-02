@@ -11,6 +11,14 @@ import {
   cocktailSort,
 } from "./Algorithms.js";
 
+function generateArray(start, end) {
+  let array = [];
+  for (let i = 0; i < end; i++) {
+    array.push(i + start);
+  }
+  return array;
+}
+
 class Sorting extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +27,7 @@ class Sorting extends Component {
       done: true,
       method: "",
       sorted: true,
+      size: "0",
     };
   }
   buttons = [
@@ -80,8 +89,11 @@ class Sorting extends Component {
     },
   ];
 
-  componentDidMount() {
-    this.setState({ list: this.generateArray(0, 156) });
+  static getDerivedStateFromProps(props, state) {
+    if (state.size !== props.size) {
+      return { list: generateArray(0, props.size), size: props.size };
+    }
+    return null;
   }
 
   sortAnimation = (array, l, u, sort, method, ms) => {
@@ -195,14 +207,6 @@ class Sorting extends Component {
     );
   }
 
-  generateArray = (start, end) => {
-    let array = [];
-    for (let i = 0; i < end; i++) {
-      array.push(i + start);
-    }
-    return array;
-  };
-
   getShuffle = () => {
     if (this.state.sorted) {
       return (
@@ -265,7 +269,7 @@ class Sorting extends Component {
 class Bar extends Component {
   state = {
     backgroundColor: "lightblue",
-    height: this.props.display * 3.6 + 4 + "px",
+    height: this.props.display * 3.55 + 4 + "px",
   };
 
   render() {
