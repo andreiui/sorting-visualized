@@ -3,8 +3,12 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
-  margin: 0 0 10px 0;
+  align-items: flex-start;
+  margin: 0 0 20px 0;
+}
+
+.title {
+  margin: 0 0 20px 0;
 }
 
 .logo {
@@ -21,7 +25,6 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-end;
-  padding: 10px 0 0 0;
 }
 
 .slider {
@@ -31,7 +34,6 @@
 }
 
 .slider-input {
-  -webkit-appearance: none;
   background: #cccccc;
   width: 150px;
   height: 2px;
@@ -53,6 +55,10 @@
   cursor: pointer;
 }
 
+.slider-input:disabled {
+  opacity: 0.3;
+}
+
 .text {
   margin: 0;
 }
@@ -65,4 +71,12 @@
 
 .text .a:hover {
   color: palevioletred;
+}
+
+@media only screen and (max-width: 750px) {
+  .header {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }

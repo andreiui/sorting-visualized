@@ -1,16 +1,13 @@
 import React, { Component } from "react";
 import "./Main.css";
-import Sorting from "./Sorting";
+import Sorting from "./Sorting.js";
 
 class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
       size: "156",
-      speed: "7",
-      done: true,
-      method: "",
-      sorted: true,
+      speed: "9",
     };
     this.setSize = this.setSize.bind(this);
     this.setSpeed = this.setSpeed.bind(this);
@@ -35,7 +32,7 @@ class Main extends Component {
           speed={this.state.speed}
           setSpeed={this.setSpeed}
         />
-        <Sorting size={this.state.size} />
+        <Sorting size={this.state.size} speed={this.state.speed} />
       </React.Fragment>
     );
   }
@@ -69,6 +66,7 @@ class Settings extends Component {
             type="range"
             min="64"
             max="172"
+            step="1"
             defaultValue={this.props.size}
             className="slider-input"
             onChange={this.props.setSize}
@@ -83,6 +81,7 @@ class Settings extends Component {
             type="range"
             min="2"
             max="12"
+            step="2"
             defaultValue={this.props.speed}
             className="slider-input"
             onChange={this.props.setSpeed}

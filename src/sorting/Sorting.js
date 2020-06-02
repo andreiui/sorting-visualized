@@ -105,6 +105,11 @@ class Sorting extends Component {
     let unsorted = [...array];
     const bars = document.getElementsByClassName("sorting bar");
     this.setState({ done: false, method: method, sorted: false });
+    let sizeInputSlider = document.getElementById("size");
+    let speedInputSlider = document.getElementById("speed");
+
+    sizeInputSlider.disabled = true;
+    speedInputSlider.disabled = true;
 
     animations = sort(array, l, u);
 
@@ -176,8 +181,10 @@ class Sorting extends Component {
 
     setTimeout(() => {
       this.setState({ done: true, method: "" });
+      speedInputSlider.disabled = false;
       if (method === "Sorting...") {
         this.setState({ sorted: true });
+        sizeInputSlider.disabled = false;
       }
     }, (animations.length + 1) * ms);
 
@@ -196,7 +203,7 @@ class Sorting extends Component {
       <div className="container">
         <div className="sorting">
           {this.state.list.map((number) => (
-            <Bar key={number} display={number} />
+            <Bar key={number} height={number} />
           ))}
         </div>
         <div className="buttons">
@@ -221,7 +228,8 @@ class Sorting extends Component {
                 this.state.list.length,
                 shuffleArray,
                 "Shuffling...",
-                12
+                12,
+                this.props
               ),
             })
           }
@@ -248,7 +256,8 @@ class Sorting extends Component {
                   this.state.list.length,
                   button.func,
                   button.active,
-                  button.speed
+                  button.speed,
+                  this.props
                 ),
               })
             }
@@ -269,7 +278,7 @@ class Sorting extends Component {
 class Bar extends Component {
   state = {
     backgroundColor: "lightblue",
-    height: this.props.display * 3.55 + 4 + "px",
+    height: this.props.height * 3.2 + 4 + "px",
   };
 
   render() {

@@ -5,13 +5,10 @@ body {
   padding: 20px 30px 20px 30px;
 }
 
-.title {
-  margin: 0 0 20px 0;
-}
-
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   width: auto;
 }
 
@@ -22,29 +19,6 @@ body {
   justify-content: center;
   align-items: flex-end;
   margin-bottom: 25px;
-}
-
-.title .logo {
-  display: inline-flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: baseline;
-  margin: 0;
-}
-
-.text {
-  margin: 0;
-}
-
-.text .a {
-  text-decoration: none;
-  color: black;
-  transition: 0.1s ease-in;
-}
-
-.text .a:hover {
-  color: palevioletred;
 }
 
 .buttons {
