@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
-import Main from "./components/Main";
+import Sorting from "./sorting/Sorting";
 
 function App() {
-  return <Main />;
+  return <Sorting />;
 }
 
 export default App;

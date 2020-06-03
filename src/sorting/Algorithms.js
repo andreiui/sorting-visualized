@@ -1,6 +1,7 @@
 export const shuffleArray = (array, l, u) => {
   let animations = [];
   let j;
+
   for (let i = u - 1; i > l; i--) {
     j = Math.floor(Math.random() * (i + 1));
     const a = {};
@@ -9,12 +10,14 @@ export const shuffleArray = (array, l, u) => {
     array = swap(array, i, j);
     animations.push(a);
   }
+
   return animations;
 };
 
 export const selectionSort = (array, l, u) => {
   let animations = [];
   let minIndex;
+
   for (let i = l; i < u; i++) {
     minIndex = i;
     for (let j = i + 1; j < u; j++) {
@@ -30,11 +33,13 @@ export const selectionSort = (array, l, u) => {
     a.swap = [i, minIndex];
     animations.push(a);
   }
+
   return animations;
 };
 
 export const bubbleSort = (array, l, u) => {
   let animations = [];
+
   for (let j = u - 1; j >= 1; j--) {
     for (let i = l; i < j; i++) {
       const a = {};
@@ -46,13 +51,15 @@ export const bubbleSort = (array, l, u) => {
       animations.push(a);
     }
   }
+
   return animations;
 };
 
 export const insertionSort = (array, l, u) => {
   let animations = [];
-  let j;
+
   for (let i = l; i < u - 1; i++) {
+    let j;
     for (j = i + 1; j > 0 && array[j - 1] > array[j]; j--) {
       const a = {};
       a.comp = [j - 1, j];
@@ -66,11 +73,14 @@ export const insertionSort = (array, l, u) => {
       animations.push(a);
     }
   }
+
   return animations;
 };
 
 export const mergeSort = (array, l, u) => {
   let animations = [];
+  let mid;
+
   if (l + 1 === u) {
     return animations;
   }
@@ -85,12 +95,14 @@ export const mergeSort = (array, l, u) => {
     return animations;
   }
 
-  const mid = Math.floor((l + u) / 2);
+  mid = Math.floor((l + u) / 2);
+
   animations = [
     ...mergeSort(array, l, mid),
     ...mergeSort(array, mid, u),
     ...mergeIntoArray(array, l, u, mid),
   ];
+
   return animations;
 };
 
@@ -245,8 +257,8 @@ export const cocktailSort = (array, l, u) => {
   let animations = [];
   let i = l;
   let j = u - 1;
+
   while (j > i) {
-    console.log(i, j);
     for (let k = i; k < j; k++) {
       const a = {};
       a.comp = [k, k + 1];
@@ -268,12 +280,12 @@ export const cocktailSort = (array, l, u) => {
     for (; array[i] + 1 === array[i + 1]; i++);
     for (; array[j] === array[j - 1] + 1; j--);
   }
+
   return animations;
 };
 
 function swap(array, i, j) {
-  let temp;
-  temp = array[i];
+  let temp = array[i];
   array[i] = array[j];
   array[j] = temp;
   return array;

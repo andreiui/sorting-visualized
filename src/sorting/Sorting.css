@@ -5,6 +5,90 @@ body {
   padding: 20px 30px 20px 30px;
 }
 
+.header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0 0 20px 0;
+}
+
+.title {
+  margin: 0 0 20px 0;
+}
+
+.logo {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: baseline;
+  margin: 0;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.slider {
+  display: flex;
+  align-items: center;
+  margin: 0 0 20px 0;
+}
+
+.slider-input {
+  background: #cccccc;
+  width: 150px;
+  height: 2px;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.slider-input:hover {
+  opacity: 1;
+}
+
+.slider-input::-webkit-slider-thumb {
+  cursor: pointer;
+}
+
+.slider-input::-moz-range-thumb {
+  cursor: pointer;
+}
+
+.slider-input:disabled {
+  opacity: 0.3;
+}
+
+.text {
+  margin: 0;
+}
+
+.text .a {
+  text-decoration: none;
+  color: black;
+  transition: 0.1s ease-in;
+}
+
+.text .a:hover {
+  text-decoration: underline;
+  color: #0366d6;
+}
+
+@media only screen and (max-width: 750px) {
+  .header {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -31,11 +115,10 @@ body {
 
 .buttons .button {
   background: #f7f7f7;
-  font-weight: lighter;
   width: 104px;
   height: 32px;
   margin: 0 8px 8px 8px;
-  border: none;
+  border: solid 2px lightgray;
   border-radius: 4px;
   transition: box-shadow 0.2s;
   cursor: pointer;
@@ -48,6 +131,7 @@ body {
 
 .buttons .button:active {
   box-shadow: inset 1px 1px 1px #dfdfdf;
+  color: black;
 }
 
 .sorting .bar {

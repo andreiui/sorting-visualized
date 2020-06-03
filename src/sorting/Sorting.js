@@ -20,24 +20,125 @@ function generateArray(start, end) {
 }
 
 class Sorting extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      list: [],
-      done: true,
-      method: "",
-      sorted: true,
-      size: "0",
+      size: "156",
+      speed: "8",
     };
   }
+
+  setSize = () => {
+    let newSize = document.getElementById("size").value;
+    this.setState({ size: newSize });
+  }
+
+  setSpeed = () => {
+    let newSpeed = document.getElementById("speed").value;
+    this.setState({ speed: newSpeed });
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <Header
+          size={this.state.size}
+          setSize={this.setSize}
+          speed={this.state.speed}
+          setSpeed={this.setSpeed}
+        />
+        <List
+          size={this.state.size}
+          speed={this.calculateSpeed(this.state.speed)}
+        />
+      </React.Fragment>
+    );
+  }
+
+  calculateSpeed(speed) {
+    return (1 / (Math.log2(speed) / 3)) ** 1.5;
+  }
+}
+
+const Header = (props) => {
+  return (
+    <div className="header">
+      <Title size={props.size} />
+      <Settings
+        size={props.size}
+        setSize={props.setSize}
+        speed={props.speed}
+        setSpeed={props.setSpeed}
+      />
+    </div>
+  );
+}
+const Title = (props) => {
+  return (<div className="title">
+    <div className="logo">
+      <h1 className="text">
+        {props.size}&nbsp;<small>lines</small>&nbsp;
+     </h1>
+      <h2 className="text">|&nbsp;</h2>
+      <h3 className="text">
+        7&nbsp;<small>algorithms</small>
+      </h3>
+    </div>
+    <div className="text">
+      <small>
+        made by{" "}
+        <a className="a" href="https://github.com/andreiui">
+          Andrei Pascu
+       </a>
+      </small>
+    </div>
+  </div>);
+}
+
+const Settings = (props) => {
+  return (<div className="settings">
+    <div className="slider">
+      <b>Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+      <small>Min</small>&nbsp;
+    <input
+        id="size"
+        type="range"
+        min="64"
+        max="172"
+        step="1"
+        defaultValue={props.size}
+        className="slider-input"
+        onChange={props.setSize}
+      />
+    &nbsp;<small>Max</small>
+    </div>
+    <div className="slider">
+      <b>Speed&nbsp;&nbsp;&nbsp;&nbsp;</b>
+      <small>Slow</small>&nbsp;
+    <input
+        id="speed"
+        type="range"
+        min="4"
+        max="14"
+        step="2"
+        defaultValue={props.speed}
+        className="slider-input"
+        onChange={props.setSpeed}
+      />
+    &nbsp;<small>Fast</small>
+    </div>
+  </div>);
+}
+
+class List extends Component {
+  state = {
+    list: [],
+    done: true,
+    method: "",
+    sorted: true,
+    size: "0",
+  };
   buttons = [
-    {
-      class: "shuffle",
-      title: "Shuffle",
-      func: shuffleArray,
-      speed: 6,
-      active: "Shuffling...",
-    },
     {
       class: "sorting",
       title: "Selection Sort",
@@ -192,7 +293,7 @@ class Sorting extends Component {
     return unsorted;
   };
 
-  swap(array, i, j, arr) {
+  swap(array, i, j) {
     var temp = array[i];
     array[i] = array[j];
     array[j] = temp;
@@ -266,19 +367,20 @@ class Sorting extends Component {
         ));
     } else {
       return (
-        <React.Fragment>
-          <h2 className="status">{this.state.method}</h2>
-        </React.Fragment>
+        <h2 className="status">{this.state.method}</h2>
       );
     }
   };
 }
 
 class Bar extends Component {
-  state = {
-    backgroundColor: "lightblue",
-    height: this.props.height * 3.2 + 4 + "px",
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      backgroundColor: "lightblue",
+      height: this.props.height * 3.2 + 4 + "px",
+    };
+  }
 
   render() {
     return <div className="sorting bar" style={this.state} />;
