@@ -75,7 +75,7 @@ const Header = (props) => {
 }
 const Title = () => {
   return (<div className="title">
-    <h2 className="logo">Sorting{" "}visualizer</h2>
+    <h2 className="logo">Sorting Visualizer</h2>
     <div className="text">
       <small>
         made by{" "}

@@ -1,3 +1,10 @@
+# Sorting Visualizer
+
+A React application designed as an interactive visualization tool of common sorting algorithms, usually taught in Computer Science courses.<br />
+Built for educational purposes.
+
+## React Information
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
