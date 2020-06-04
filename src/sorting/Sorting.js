@@ -23,7 +23,7 @@ class Sorting extends Component {
   constructor() {
     super();
     this.state = {
-      size: "156",
+      size: "150",
       speed: "8",
     };
   }
@@ -63,7 +63,7 @@ class Sorting extends Component {
 const Header = (props) => {
   return (
     <div className="header">
-      <Title size={props.size} />
+      <Title />
       <Settings
         size={props.size}
         setSize={props.setSize}
@@ -73,23 +73,13 @@ const Header = (props) => {
     </div>
   );
 }
-const Title = (props) => {
+const Title = () => {
   return (<div className="title">
-    <div className="logo">
-      <h1 className="text">
-        {props.size}&nbsp;<small>lines</small>&nbsp;
-     </h1>
-      <h2 className="text">|&nbsp;</h2>
-      <h3 className="text">
-        7&nbsp;<small>algorithms</small>
-      </h3>
-    </div>
+    <h2 className="logo">Sorting{" "}visualizer</h2>
     <div className="text">
       <small>
         made by{" "}
-        <a className="a" href="https://github.com/andreiui">
           Andrei Pascu
-       </a>
       </small>
     </div>
   </div>);
