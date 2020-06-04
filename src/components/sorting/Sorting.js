@@ -40,7 +40,7 @@ class Sorting extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <div className="sorting-visualizer">
         <Header
           size={this.state.size}
           setSize={this.setSize}
@@ -51,7 +51,7 @@ class Sorting extends Component {
           size={this.state.size}
           speed={this.calculateSpeed(this.state.speed)}
         />
-      </React.Fragment>
+      </div>
     );
   }
 
@@ -293,7 +293,7 @@ class List extends Component {
   render() {
     return (
       <div className="container">
-        <div className="sorting">
+        <div className="list">
           {this.state.list.map((number) => (
             <Bar key={number} height={number} />
           ))}
