@@ -28,6 +28,10 @@ class Sorting extends Component {
     };
   }
 
+  componentDidMount() {
+    document.title = 'Sorting Visualizer';
+  }
+
   setSize = () => {
     let newSize = document.getElementById("size").value;
     this.setState({ size: newSize });
