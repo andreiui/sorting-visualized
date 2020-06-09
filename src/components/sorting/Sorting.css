@@ -1,10 +1,10 @@
-.sorting-visualizer {
+.sorting-visualized {
   display: block;
   background-color: white;
   padding: 20px 30px 20px 30px;
 }
 
-.sorting-visualizer .header {
+.sorting-visualized .header {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -13,11 +13,11 @@
   margin: 0 0 20px 0;
 }
 
-.sorting-visualizer .title {
+.sorting-visualized .title {
   margin: 0 0 30px 0;
 }
 
-.sorting-visualizer .logo {
+.sorting-visualized .logo {
   display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -26,20 +26,20 @@
   margin: 0 0 4px 0;
 }
 
-.sorting-visualizer .settings {
+.sorting-visualized .settings {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-end;
 }
 
-.sorting-visualizer .slider {
+.sorting-visualized .slider {
   display: flex;
   align-items: center;
   margin: 0 0 20px 0;
 }
 
-.sorting-visualizer .slider-input {
+.sorting-visualized .slider-input {
   background: #cccccc;
   width: 150px;
   height: 2px;
@@ -49,39 +49,39 @@
   transition: opacity 0.2s;
 }
 
-.sorting-visualizer .slider-input:hover {
+.sorting-visualized .slider-input:hover {
   opacity: 1;
 }
 
-.sorting-visualizer .slider-input::-webkit-slider-thumb {
+.sorting-visualized .slider-input::-webkit-slider-thumb {
   cursor: pointer;
 }
 
-.sorting-visualizer .slider-input::-moz-range-thumb {
+.sorting-visualized .slider-input::-moz-range-thumb {
   cursor: pointer;
 }
 
-.sorting-visualizer .slider-input:disabled {
+.sorting-visualized .slider-input:disabled {
   opacity: 0.3;
 }
 
-.sorting-visualizer .text {
+.sorting-visualized .text {
   margin: 0;
 }
 
-.sorting-visualizer .status {
+.sorting-visualized .status {
   font-weight: 600;
   margin: 0;
 }
 
-.sorting-visualizer .container {
+.sorting-visualized .container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   width: auto;
 }
 
-.sorting-visualizer .list {
+.sorting-visualized .list {
   display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -90,7 +90,7 @@
   margin-bottom: 25px;
 }
 
-.sorting-visualizer .buttons {
+.sorting-visualized .buttons {
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -98,7 +98,7 @@
   align-items: stretch;
 }
 
-.sorting-visualizer .buttons .button {
+.sorting-visualized .buttons .button {
   background: #f7f7f7;
   width: 104px;
   height: 32px;
@@ -109,17 +109,17 @@
   cursor: pointer;
 }
 
-.sorting-visualizer .buttons .button:hover {
+.sorting-visualized .buttons .button:hover {
   background: #fafafa;
   box-shadow: 3px 3px 3px #eaeaea;
 }
 
-.sorting-visualizer .buttons .button:active {
+.sorting-visualized .buttons .button:active {
   box-shadow: inset 1px 1px 1px #dfdfdf;
   color: black;
 }
 
-.sorting-visualizer .list .bar {
+.sorting-visualized .list .bar {
   display: flex;
   width: 4px;
   flex-grow: 0;
@@ -131,13 +131,16 @@
 }
 
 @media only screen and (max-width: 750px) {
-  .sorting-visualizer .header {
+  .sorting-visualized .text {
+    text-align: center;
+  }
+  .sorting-visualized .header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
   
-  .sorting-visualizer .list .bar {
+  .sorting-visualized .list .bar {
     width: 1px;
     flex-grow: 1;
     flex-shrink: 0;

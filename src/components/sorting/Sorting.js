@@ -29,7 +29,7 @@ class Sorting extends Component {
   }
 
   componentDidMount() {
-    document.title = 'Sorting Visualizer';
+    document.title = 'Sorting Visualized';
   }
 
   setSize = () => {
@@ -44,7 +44,7 @@ class Sorting extends Component {
 
   render() {
     return (
-      <div className="sorting-visualizer">
+      <div className="sorting-visualized">
         <Header
           size={this.state.size}
           setSize={this.setSize}
@@ -79,11 +79,10 @@ const Header = (props) => {
 }
 const Title = () => {
   return (<div className="title">
-    <h2 className="logo">Sorting Visualizer</h2>
+    <h2 className="logo">Sorting Visualized</h2>
     <div className="text">
       <small>
-        made by{" "}
-          Andrei Pascu
+        by Andrei Pascu
       </small>
     </div>
   </div>);
