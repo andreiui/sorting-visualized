@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Sorting from "./components/sorting/Sorting";
+import Sorting from "./components/Sorting";
 
 function App() {
   return <Sorting />;
