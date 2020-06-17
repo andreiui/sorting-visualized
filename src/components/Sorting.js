@@ -4,11 +4,14 @@ import {
   shuffleArray,
   selectionSort,
   bubbleSort,
+  cocktailSort,
   insertionSort,
   mergeSort,
   quickSort,
   heapSort,
-  cocktailSort,
+  timSort,
+  radixSort_base2,
+  radixSort_base16,
 } from "./Algorithms.js";
 
 function generateArray(start, end) {
@@ -30,6 +33,26 @@ class Sorting extends Component {
 
   componentDidMount() {
     document.title = 'Sorting Visualized';
+    this.setStyle("staircase");
+  }
+
+  setStyle = (id) => {
+    let selectors = document.getElementsByClassName("selector");
+    for (let s of selectors) {
+      s.style.color = "gray";
+    }
+    let selector = document.getElementById(id);
+    selector.style.color = "black";
+    let list = document.getElementsByClassName("list");
+    if (id === "staircase") {
+      list[0].style.alignItems = "flex-end";
+    }
+    if (id === "soundwaves") {
+      list[0].style.alignItems = "center";
+    }
+    if (id === "stalactites") {
+      list[0].style.alignItems = "flex-start";
+    }
   }
 
   setSize = () => {
@@ -46,6 +69,7 @@ class Sorting extends Component {
     return (
       <div className="sorting-visualized">
         <Header
+          setStyle={this.setStyle}
           size={this.state.size}
           setSize={this.setSize}
           speed={this.state.speed}
@@ -67,7 +91,7 @@ class Sorting extends Component {
 const Header = (props) => {
   return (
     <div className="header">
-      <Title />
+      <Title setStyle={props.setStyle} />
       <Settings
         size={props.size}
         setSize={props.setSize}
@@ -77,50 +101,78 @@ const Header = (props) => {
     </div>
   );
 }
-const Title = () => {
-  return (<div className="title">
-    <h2 className="logo">Sorting Visualized</h2>
-    <div className="text">
-      <small>
-        by Andrei Pascu
-      </small>
+const Title = (props) => {
+  return (
+    <div className="title">
+      <h2 className="logo">Sorting Visualized</h2>
+      <Styles setStyle={props.setStyle} />
     </div>
-  </div>);
+  );
+}
+
+const Styles = (props) => {
+  return (
+    <div className="styles">
+      <button
+        className="selector"
+        id="staircase"
+        onClick={() => props.setStyle("staircase")}
+      >
+        Staircase
+      </button> /&nbsp;
+      <button
+        className="selector"
+        id="soundwaves"
+        onClick={() => props.setStyle("soundwaves")}
+      >
+        Soundwaves
+      </button> /&nbsp;
+      <button
+        className="selector"
+        id="stalactites"
+        onClick={() => props.setStyle("stalactites")}
+      >
+        Stalactites
+      </button>
+    </div>
+  );
 }
 
 const Settings = (props) => {
-  return (<div className="settings">
-    <div className="slider">
-      <b>Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
-      <small>Min</small>&nbsp;
+  return (
+    <div className="settings">
+      <div className="slider">
+        <b>Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+        <small>Min</small>&nbsp;
     <input
-        id="size"
-        type="range"
-        min="64"
-        max="172"
-        step="1"
-        defaultValue={props.size}
-        className="slider-input"
-        onChange={props.setSize}
-      />
+          id="size"
+          type="range"
+          min="64"
+          max="172"
+          step="1"
+          defaultValue={props.size}
+          className="slider-input"
+          onChange={props.setSize}
+        />
     &nbsp;<small>Max</small>
-    </div>
-    <div className="slider">
-      <b>Speed&nbsp;&nbsp;&nbsp;&nbsp;</b>
-      <small>Slow</small>&nbsp;
+      </div>
+      <div className="slider">
+        <b>Speed&nbsp;&nbsp;&nbsp;&nbsp;</b>
+        <small>Slow</small>&nbsp;
     <input
-        id="speed"
-        type="range"
-        min="4"
-        max="14"
-        step="2"
-        defaultValue={props.speed}
-        className="slider-input"
-        onChange={props.setSpeed}
-      />
+          id="speed"
+          type="range"
+          min="4"
+          max="14"
+          step="2"
+          defaultValue={props.speed}
+          className="slider-input"
+          onChange={props.setSpeed}
+        />
     &nbsp;<small>Fast</small>
+      </div>
     </div>
-  </div>);
+  );
 }
 
 class List extends Component {
@@ -143,6 +195,14 @@ class List extends Component {
       class: "sorting",
       title: "Bubble Sort",
       func: bubbleSort,
+      speed: 6,
+      active: "Sorting...",
+    },
+
+    {
+      class: "sorting",
+      title: "Cocktail Sort",
+      func: cocktailSort,
       speed: 6,
       active: "Sorting...",
     },
@@ -176,11 +236,25 @@ class List extends Component {
     },
     {
       class: "sorting",
-      title: "Cocktail Sort",
-      func: cocktailSort,
+      title: "Timsort",
+      func: timSort,
+      speed: 12,
+      active: "Sorting...",
+    },
+    {
+      class: "sorting",
+      title: "Radix-2 Sort",
+      func: radixSort_base2,
       speed: 6,
       active: "Sorting...",
     },
+    {
+      class: "sorting",
+      title: "Radix-16 Sort",
+      func: radixSort_base16,
+      speed: 12,
+      active: "Sorting...",
+    }
   ];
 
   static getDerivedStateFromProps(props, state) {
