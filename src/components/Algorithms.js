@@ -55,12 +55,43 @@ export const bubbleSort = (array, l, u) => {
   return animations;
 };
 
+export const cocktailSort = (array, l, u) => {
+  let animations = [];
+  let i = l;
+  let j = u - 1;
+
+  while (j > i) {
+    for (let k = i; k < j; k++) {
+      const a = {};
+      a.comp = [k, k + 1];
+      if (array[k] > array[k + 1]) {
+        array = swap(array, k, k + 1);
+        a.swap = [k, k + 1];
+      }
+      animations.push(a);
+    }
+    for (let k = j - 2; k >= i; k--) {
+      const a = {};
+      a.comp = [k, k + 1];
+      if (array[k] > array[k + 1]) {
+        array = swap(array, k, k + 1);
+        a.swap = [k, k + 1];
+      }
+      animations.push(a);
+    }
+    for (; array[i] + 1 === array[i + 1]; i++);
+    for (; array[j] === array[j - 1] + 1; j--);
+  }
+
+  return animations;
+};
+
 export const insertionSort = (array, l, u) => {
   let animations = [];
 
   for (let i = l; i < u - 1; i++) {
     let j;
-    for (j = i + 1; j > 0 && array[j - 1] > array[j]; j--) {
+    for (j = i + 1; j > l && array[j - 1] > array[j]; j--) {
       const a = {};
       a.comp = [j - 1, j];
       array = swap(array, j - 1, j);
@@ -203,7 +234,7 @@ function quickSortPartition(array, l, u, animations) {
 export const heapSort = (array, l, u) => {
   let animations = [];
 
-  for (let i = Math.floor((u - l) / 2) - 1; i >= 0; i--) {
+  for (let i = Math.floor((u - l) / 2) - 1; i >= l; i--) {
     animations = [...animations, ...heapify(array, i, u)];
   }
 
@@ -253,36 +284,93 @@ function heapify(array, root, n) {
   return animations;
 }
 
-export const cocktailSort = (array, l, u) => {
+export const timSort = (array, l, u) => {
   let animations = [];
-  let i = l;
-  let j = u - 1;
+  let mid;
 
-  while (j > i) {
-    for (let k = i; k < j; k++) {
+  if (u - l <= 32) {
+    return [...insertionSort(array, l, u)];
+  }
+
+  mid = Math.floor((l + u) / 2);
+
+  animations = [
+    ...timSort(array, l, mid),
+    ...timSort(array, mid, u),
+    ...mergeIntoArray(array, l, u, mid),
+  ];
+
+  return animations;
+}
+
+export const radixSort_base2 = (array, l, u) => {
+  let animations = [];
+  let max = 0;
+  const base = 2;
+
+  for (let i = l; i < u; i++) {
+    if (array[i] > max) {
+      max = array[i];
+    }
+  }
+
+  for (let exponent = 1; Math.floor(max / exponent) > 0; exponent *= base) {
+    for (let i = u - 1; i >= l; i--) {
       const a = {};
-      a.comp = [k, k + 1];
-      if (array[k] > array[k + 1]) {
-        array = swap(array, k, k + 1);
-        a.swap = [k, k + 1];
-      }
+      a.comp = [i, i];
       animations.push(a);
     }
-    for (let k = j - 2; k >= i; k--) {
-      const a = {};
-      a.comp = [k, k + 1];
-      if (array[k] > array[k + 1]) {
-        array = swap(array, k, k + 1);
-        a.swap = [k, k + 1];
-      }
-      animations.push(a);
-    }
-    for (; array[i] + 1 === array[i + 1]; i++);
-    for (; array[j] === array[j - 1] + 1; j--);
+    animations = [...animations, ...countingSortSubroutine(array, l, u, exponent, base)];
   }
 
   return animations;
-};
+}
+
+export const radixSort_base16 = (array, l, u) => {
+  let animations = [];
+  let max = 0;
+  const base = 16;
+
+  for (let i = l; i < u; i++) {
+    if (array[i] > max) {
+      max = array[i];
+    }
+  }
+
+  for (let exponent = 1; Math.floor(max / exponent) > 0; exponent *= base) {
+    for (let i = u - 1; i >= l; i--) {
+      const a = {};
+      a.comp = [i, i];
+      animations.push(a);
+    }
+    animations = [...animations, ...countingSortSubroutine(array, l, u, exponent, base)];
+  }
+
+  return animations;
+}
+
+function countingSortSubroutine(array, l, u, exponent, base) {
+  let animations = [];
+  let count = [];
+  let arr = [...array];
+
+  for (let i = 0; i < base; count[i] = 0, i++);
+  for (let i = l; i < u; count[Math.floor(arr[i] / exponent) % base]++, i++);
+  for (let i = l + 1; i < u; count[i] += count[i - 1], i++);
+
+  for (let i = u - 1; i >= l; i--) {
+    let k = Math.floor(arr[i] / exponent) % base;
+    const a = {};
+    a.swap = [count[k] - 1, i];
+    a.arr = [...arr];
+    array[count[k] - 1] = arr[i];
+    count[k]--;
+    animations.push(a);
+    console.log(count[k], i, arr);
+  }
+
+  return animations;
+}
 
 function swap(array, i, j) {
   let temp = array[i];
